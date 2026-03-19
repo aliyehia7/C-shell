@@ -3,8 +3,8 @@
 #include <string.h>
 #include "cshlib.h"
 
-#define MAX_INPUT 1024  // max characters per input line
-#define MAX_ARGS 64     // max number of arguments
+#define MAX_INPUT 1024 // max characters per input line
+#define MAX_ARGS 64    // max number of arguments
 
 /* splits the input string into an array of tokens separated by spaces */
 char **splitInp(char *input)
@@ -27,7 +27,7 @@ char **splitInp(char *input)
         token = strtok(NULL, " ");
     }
 
-    args[i] = NULL;  // null-terminate the args array
+    args[i] = NULL; // null-terminate the args array
     return args;
 }
 
@@ -51,6 +51,12 @@ int run_cshlib(char **args)
         return 1;
     }
 
+    if (strcmp(args[0], "pwd") == 0)
+    {
+        cshlib_pwd();
+        return 1;
+    }
+
     return 0;
 }
 
@@ -70,7 +76,7 @@ int main()
             exit(0);
         }
 
-        input[strcspn(input, "\n")] = '\0';  // strip trailing newline
+        input[strcspn(input, "\n")] = '\0'; // strip trailing newline
 
         if (strcmp(input, "exit") == 0)
         {
